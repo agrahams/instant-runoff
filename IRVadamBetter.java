@@ -5,6 +5,12 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.Math;
+
+//This program finds Monotonicity, No-show, Condorcet and IAS/PI anomalies in 3-candidate elections, as well as checks to see if the Borda count winner matches the IRV winner
+
+//The Monotonicity program (topThreeGapSort) starts about line 1250.  Before that are preliminary calculations and other Monotonicity programs that did not work as well.
+
+
 public class IRVadamBetter {
 	static boolean monotonicity = false;
 	static char Second = '3';
@@ -134,7 +140,7 @@ public class IRVadamBetter {
 		//	System.out.println(votes.get(i) + " " +tops.get(i));
 		//}
 
-		//while there is no winner. ADAM NOTE: need to better understand how "winner" works.
+		//while there is no winner. 
 		while (!winner(tops)){
 			int votesPer[] = new int[picks];
 
@@ -172,10 +178,7 @@ public class IRVadamBetter {
 				}
 			}
 
-			/*if(max/((double)total)*100 >50){
-				System.out.println("The Winner is: " + (char)(maxPos+'A'));
-				return (char)(maxPos+'A');
-			} */
+			
 
 
 			//gets the second place finisher and sets the global variable equal to that variable
@@ -185,21 +188,7 @@ public class IRVadamBetter {
 				Second = minChar;
 			}
 
-			//System.out.println("Lowest votes: " + minChar);
-			//for(int i = 0;i<votesPer.length;i++){
-			//	System.out.println((char)(i+65) + " = " + votesPer[i]);
-			//}
-			/* for(int i = 0;i<tops.size();i++){
-				char current = tops.get(i).charAt(0);
-
-				if(current == minChar){
-					if(tops.get(i).length() > 1){
-						tops.set(i, tops.get(i).substring(1));
-					}else{
-						tops.remove(i);
-					}
-				}
-			} */
+			
 			rankingArray[picks-1-c] = minChar;  //lists the loser in the ranking array
 
 			//remove the person who has the least number of votes
@@ -367,52 +356,11 @@ public class IRVadamBetter {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		/*		//Now need to combine all three-vote options into one.  That is, make ABA and ABB also count for ABC
-				ArrayList<Integer> compactVotesMost2 = new ArrayList<Integer>();
-				ArrayList<String> compactStringsMost2 = new ArrayList<String>();
-
-				for(int i = 0;i<compactStringsMost.size();i++){
-					
-					if(compactStringsMost.get(i).length()==1){
-						compactStringsMost2.add(compactStringsMost.get(i));
-						compactVotesMost2.add(compactVotesMost.get(i));
-					}else if(compactStrings2.get(i).length()==2){
-						
-					}else if(compactStrings2.get(i).length()==3){
-						int temp=0;
-						for(int k = i+1;k<compactStrings2.size();k++){
-							if(compactStrings2.get(i).equals(compactStrings2.get(k).substring(0,2))){
-								compactStringsMost.add(compactStrings2.get(k));
-								compactVotesMost.add(compactVotes2.get(k)+compactVotes2.get(i));
-							}
-						}
-						
-					}
-				}
-				
-
-				try {
-					BufferedWriter out = new BufferedWriter(new FileWriter("TopThreeMostCompact.txt"));
-					out.write("3");
-					out.newLine();
-					out.write("3");
-					out.newLine();
-					for(int i = 0;i<compactVotesMost.size();i++){
-						out.write("" + compactVotesMost.get(i) + " " + compactStringsMost.get(i));
-						out.newLine();
-					}
-					out.write("-1");
-					out.newLine();
-					out.close();
-
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
+		
 			}
 		}
 
-		//System.out.println("The Winner is: " + tops.get(0).charAt(0));
+		
 
 		System.out.println("The Ranking is: ");  
 		System.out.println("1 " + tops.get(0).charAt(0)); 
@@ -431,10 +379,7 @@ public class IRVadamBetter {
 	//runs 1 round of IRV voting for the given ballots
 	static char roundNoRankNoTop(ArrayList<String> tops, ArrayList<Integer> votes, int picks){
 		int c = 0;
-		//char[] rankingArray = new char[picks];  //rankingArray[picks-1-c] = minChar;
-		//for(int i = 0;i<tops.size();i++){
-		//	System.out.println(votes.get(i) + " " +tops.get(i));
-		//}
+		
 
 		while (!winner(tops)){
 			int votesPer[] = new int[picks];
@@ -1310,7 +1255,7 @@ public class IRVadamBetter {
 
 	Finds gap between second and third place candidates, and switches votes in order to close the gap to make second-place drop out before third, then checks to see if that causes a monotonicity violation.
 	*/
-	//static void topThreeGapSort(ArrayList<String> compactStringsMost, ArrayList<Integer> compactVotesMost, char winner, int picks){
+	
 	static void topThreeGapSort(ArrayList<String> topThreePerms, ArrayList<Integer> topThreeVotes, char winner, int picks){	
 		int votesPer[] = new int[picks];
 		if(topThreePerms.size()!=9){System.out.println("Potential error, less than 9 items in array\n");
