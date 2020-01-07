@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.Math;
+//If you are interested in how the Monotonicity Anomaly program works, it starts on about line 1340 (Top Three Gap Check).  The other things are preliminary work getting the data into a readable form, other attempts at doing a monotonicity check program that did not work as well, and other voting program (such as Approval voting)
 public class IRVApproval {
 	static boolean monotonicity = false;
 	static char Second = '3';
@@ -111,21 +112,7 @@ public class IRVApproval {
 
 		}
 
-		/*System.out.println("The Winner is: "+winner);
-		//round(originals,originalNumbers,totalRunners);
-		s.next();
-		System.out.println(Second);
-		System.out.println(totalRunners);
-		System.out.println(totalPicks);
-		System.out.println(originals.size());
-
-		int possible = totalRunners;
-		for(int i = 1;i<totalPicks;i++){
-			possible*=(totalRunners+1);
-		}
-		System.out.println(possible);
-		//sort(originals, originalNumbers,winner, totalRunners);
-		 */
+		
 		
 		System.out.println();
 
@@ -138,11 +125,8 @@ public class IRVApproval {
 	static char round(ArrayList<String> tops, ArrayList<Integer> votes, int picks){
 		int c = 0;
 
-		//for(int i = 0;i<tops.size();i++){
-		//	System.out.println(votes.get(i) + " " +tops.get(i));
-		//}
-
-		//while there is no winner. ADAM NOTE: need to better understand how "winner" works.
+		
+		//while there is no winner. 
 		while (!winner(tops)){
 			int votesPer[] = new int[picks];
 
@@ -163,10 +147,6 @@ public class IRVApproval {
 			int max = -1;
 			int maxPos = 0;
 
-			/*int total = 0;
-			for(int i = 0;i<picks;i++){
-				total+=votesPer[i];
-			} */
 
 			//run through the array and get which number candidate has the least number of votes
 			for(int i = 0; i<picks;i++){
@@ -180,11 +160,7 @@ public class IRVApproval {
 				}
 			}
 
-			/*if(max/((double)total)*100 >50){
-				System.out.println("The Winner is: " + (char)(maxPos+'A'));
-				return (char)(maxPos+'A');
-			} */
-
+			
 
 			//gets the second place finisher and sets the global variable equal to that variable
 			char minChar = (char)(minPos + 'A');
@@ -193,21 +169,7 @@ public class IRVApproval {
 				Second = minChar;
 			}
 
-			//System.out.println("Lowest votes: " + minChar);
-			//for(int i = 0;i<votesPer.length;i++){
-			//	System.out.println((char)(i+65) + " = " + votesPer[i]);
-			//}
-			/* for(int i = 0;i<tops.size();i++){
-				char current = tops.get(i).charAt(0);
-
-				if(current == minChar){
-					if(tops.get(i).length() > 1){
-						tops.set(i, tops.get(i).substring(1));
-					}else{
-						tops.remove(i);
-					}
-				}
-			} */
+			
 
 			//remove the person who has the least number of votes
 			tops = removePerson(tops, minChar);
@@ -270,7 +232,7 @@ public class IRVApproval {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				//Now we have adam attempt at making it more compact:  First we put in all one vote and two vote options, then compact the three-vote options
+				//Now we make it more compact:  First we put in all one vote and two vote options, then compact the three-vote options
 				ArrayList<Integer> compactVotes2 = new ArrayList<Integer>();
 				ArrayList<String> compactStrings2 = new ArrayList<String>();
 
@@ -372,48 +334,7 @@ public class IRVApproval {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		/*		//Now need to combine all three-vote options into one.  That is, make ABA and ABB also count for ABC
-				ArrayList<Integer> compactVotesMost2 = new ArrayList<Integer>();
-				ArrayList<String> compactStringsMost2 = new ArrayList<String>();
-
-				for(int i = 0;i<compactStringsMost.size();i++){
-					
-					if(compactStringsMost.get(i).length()==1){
-						compactStringsMost2.add(compactStringsMost.get(i));
-						compactVotesMost2.add(compactVotesMost.get(i));
-					}else if(compactStrings2.get(i).length()==2){
-						
-					}else if(compactStrings2.get(i).length()==3){
-						int temp=0;
-						for(int k = i+1;k<compactStrings2.size();k++){
-							if(compactStrings2.get(i).equals(compactStrings2.get(k).substring(0,2))){
-								compactStringsMost.add(compactStrings2.get(k));
-								compactVotesMost.add(compactVotes2.get(k)+compactVotes2.get(i));
-							}
-						}
-						
-					}
-				}
-				
-
-				try {
-					BufferedWriter out = new BufferedWriter(new FileWriter("TopThreeMostCompact.txt"));
-					out.write("3");
-					out.newLine();
-					out.write("3");
-					out.newLine();
-					for(int i = 0;i<compactVotesMost.size();i++){
-						out.write("" + compactVotesMost.get(i) + " " + compactStringsMost.get(i));
-						out.newLine();
-					}
-					out.write("-1");
-					out.newLine();
-					out.close();
-
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
+		
 			}
 		}
 
@@ -452,7 +373,7 @@ public class IRVApproval {
 		    rankingArray[i] = "";
 		}
 		int d = picks-1;
-		//while there is no winner. ADAM NOTE: need to better understand how "winner" works.
+		//while there is no winner. 
 		while (!winner(tops)){
 			int votesPer[] = new int[picks];
 
@@ -522,8 +443,7 @@ public class IRVApproval {
 			irvranking = irvranking + rankingArray[i];
 		}
 		String irvranking2 =  tops.get(0).charAt(0) + irvranking;
-		//System.out.println("The Ranking, from winner to first eliminated, is: " + irvranking2);
-		//String IRVranking = rankingArray[picks-1] + rankingArray[0];
+		
 		
 		return irvranking2;
 	}
@@ -541,10 +461,8 @@ public class IRVApproval {
 		}
 		int d = picks-1;
 		char approvalRankingArray[] = new char[picks]; //declare approval ranking array
-		//for (int i = 0; i < approvalRankingArray.length; i++) {
-		//    approvalRankingArray[i] = "";
-		//}
-		//while there is no winner. ADAM NOTE: need to better understand how "winner" works.
+		
+		//while there is no winner.
 		
 			int votesPer[] = new int[picks];
 
@@ -575,25 +493,7 @@ public class IRVApproval {
 				}
 			}
 			
-			/*
-			int min = 2147483647;
-			int minPos = 0;
-
-			int max = -1;
-			int maxPos = 0;
-
-			//run through the array and get which number candidate has the least number of votes
-			for(int i = 0; i<picks;i++){
-				if(votesPer[i]<min && votesPer[i] != 0){
-					min = votesPer[i];
-					minPos = i;
-				}
-				if(votesPer[i]>max){
-					max = votesPer[i];
-					maxPos = i;
-				}
-			}
-			*/
+			
 
 			//at this point, votesPer has the number of approval votes for each candidate.  Now I need to create a new array with them in the correct ranking.  First, create a temporary array with same Approval vote info
 			int votesPerTemp[] = new int[picks];
@@ -613,7 +513,7 @@ public class IRVApproval {
 				}
 				char maxChar2 = (char)(maxPos2 + 'A'); //cast highest approval to character
 				approvalRankingArray[i] = maxChar2; //put highest approval in ranking
-				//System.out.println("maxChar is" + maxChar2);
+				
 				votesPerTemp[maxPos2] = -1; //make their votes zero to find next highest
 			}
 			
@@ -624,7 +524,7 @@ public class IRVApproval {
 		for(int i = 0; i < approvalRankingArray.length; i++){
 			approvalRanking = approvalRanking + approvalRankingArray[i];
 		}
-		//System.out.println("The Approval vote ranking, from highest to lowest, is: " + approvalRanking);
+		
 		return approvalRanking;
 	}
 	
@@ -1433,13 +1333,13 @@ public class IRVApproval {
 		
 	}
 
-	/* TOP THREE MONOTONICITY CHECK.  
+	/* TOP THREE MONOTONICITY CHECK.  This is what you should look at if you are interested in how Monotonicity program works
 	Pre: takes in voting data, winner, and number of picks
 	Post: Outputs whether or not there is a violation, and how it happens.
 
 	Finds gap between second and third place candidates, and switches votes in order to close the gap to make second-place drop out before third, then checks to see if that causes a monotonicity violation.
 	*/
-	//static void topThreeGapSort(ArrayList<String> compactStringsMost, ArrayList<Integer> compactVotesMost, char winner, int picks){
+	
 	static void topThreeGapSort(ArrayList<String> topThreePerms, ArrayList<Integer> topThreeVotes, char winner, int picks){	
 		int votesPer[] = new int[picks];
 		if(topThreePerms.size()!=9){System.out.println("Potential error, less than 9 items in array\n");
@@ -1482,7 +1382,7 @@ public class IRVApproval {
 	int winnerPos = (int)((char)(winner - 'A'));
 
 	int otherPos = 0; 
-	while (otherPos==minPos || otherPos==winnerPos) { //maybe should not use == here? =failed
+	while (otherPos==minPos || otherPos==winnerPos) { 
 		otherPos++;
 	}
 	System.out.println("Other position is "+otherPos+" \n");
@@ -1501,10 +1401,7 @@ public class IRVApproval {
 	/*(Note: let winnerPos be winner (numerical), minPos be loser, otherPos be other candidate, could be in first or second place, hard to say)*/
 
 	//convert winnerPos etc back to letters, call them R=other, W=winner
-	//THIS WAY DID NOT COMPILE:
-	//char R=String.valueOf((char)(otherPos + 'A'));
-	//char W=String.valueOf((char)(winnerPos + 'A')); //this should be same as winner
-	//char L=String.valueOf((char)(minPos + 'A'));
+	
 	char R = (char)(otherPos + 'A');
 	char W = (char)(winnerPos + 'A'); //this should be same as winner
 	char L = (char)(minPos + 'A');
@@ -1545,8 +1442,7 @@ public class IRVApproval {
 	String rlw= "" + R + L + W;
 	int totalRLW=0;
 	if(topThreeVotes.get(rwlPos)>=(n+1)){
-	/*	When I had this code: topThreeVotes[rwlPos] = topThreeVotes.get(rwlPos)-(n+1); it would not compile.  Then I switched it to the "set" thing, and now it compiles.  Have no idea if it does what I want, though. */
-	//Could also change the arraylist to an array, then it would work.
+	
 		topThreeVotes.set(rwlPos,(topThreeVotes.get(rwlPos)-(n+1)));
 		topThreeVotes.set(wrlPos,(topThreeVotes.get(wrlPos)+(n+1)));
 		//topThreeVotes[wrlPos] = topThreeVotes.get(wrlPos)+(n+1); how it used to be
@@ -1554,10 +1450,10 @@ public class IRVApproval {
 	 	if(N!=W){                       //returns anomaly and some data
 	 		System.out.println("Monotonicity Anomaly!\n");
 	 		System.out.println("Swapped "+ n +" + 1 votes from Second-place to Winner, and now " + L + " is the winner");
-	 		//System.exit(0);
+	 		
 	 	} else {
 	 		System.out.println("No monotonicity anomaly with one swap rwl to wrl.\n"); 
-	 		//System.exit(0);
+	 		
 	 	}
 	}                            //now if  topThreeVotes[rwlPos]<(n+1), change all RWL to WRL
 	else if(topThreeVotes.get(rwlPos)<(n+1)){  
@@ -1618,14 +1514,5 @@ public class IRVApproval {
 	} //ends else if(topThreeVotes.get(rwlPos)<(n+1)){  
 	} //ends Top three Gap sort
 
-	/* INDEPENDENCE OF IRRELEVANT ALTERNATIVES CHECK.  
-	Pre: takes in voting data, IRV winner, and number of picks
-	Post: Outputs whether or not there is a violation, and how it happens.
-
-	Details: Removes one losing candidate from all ballots and reruns election, then checks to see if winner in the comparison profile is different from original.  If so, report IIA violation.  Then go on to next losing candidate and do the same
-	*/
-	static void indepIrrelAlt(ArrayList<String> topThreePerms, ArrayList<Integer> topThreeVotes, char winner, int picks){	//need to fix the inputs.  Need full Preferences, not just top three, and votes, may not need picks?
-
-	}
 
 } //ends IRVadamBetter
