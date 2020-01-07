@@ -1,7 +1,11 @@
-# instant-runoff
+# Instant-runoff
 Programs analyzing real-world IRV elections
 
-These are programs I have written, or were built off of student work, to analyze real-world Instant Runoff Elections.  More precisely, to investigate the frequency of voting anomalies in IRV elections.  Below I give an overview of how the major parts of the programs work:
+These are programs I have written, or were built off of student work, to analyze real-world Instant Runoff Elections.  More precisely, to investigate the frequency of voting anomalies in IRV elections. 
+
+There are three programs.  The "Approval" program does calculations with Approval voting, the "adamBetter" program calculates many things for 3-candidate elections: monotonicity, Condorcet, No-show, and IAS/PI anomalies, as well as checking to see if the Borda count gives the same winner as the IRV method.  The "top4" program checks for anomalies at the level of 4 candidates.
+
+Below I give an overview of how the major parts of certain programs work:
 _______________________________________________________________
 Overview of how monotonicity anomaly program works:
 
