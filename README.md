@@ -7,6 +7,7 @@ There are three programs.  The "Approval" program does calculations with Approva
 
 Below I give an overview of how the major parts of certain programs work:
 _______________________________________________________________
+
 Overview of how monotonicity anomaly program works:
 
 We will explain how the program decides which ballots to change, how many of those ballots, and when. We will start with how the program works at the three-candidate level. In this exposition, assume that the three candidates are A, B, and C, with those respective orders in terms of when they were eliminated in the voting process. So A wins the IRV election in a head-to-head with B in the last round, C drops out in the round of three candidates. The program begins by looking at the gap between the number of first-place votes between B and C, let that gap be n > 0. The goal of the program is to find n+1 ballots where B is in first place, change those ballots such that A moves above B, and then rerun the IRV election to see if C now wins the election. 
@@ -31,6 +32,7 @@ and for when B drops below D and C is the eventual winner is
 BA > BAC > BAD > B > BDA > BCA > BD > BC > BDC > BCD. 
 
 ____________________________________________________________________________
+
 Overview of how other programs work:
 
 No-show paradox: The program to find no-show anomalies is similar to the program for monotonicity anomalies. In particular, the No-show program looks for anomalies existing at each particular level of the election. The main difference is that instead of swapping ballots, for the no-show anomalies voters were simply removed from the ballot and then the election was re-run. We will describe in detail how the program runs at the three-candidate level, then generalize to illustrate how it would work at higher levels. 
