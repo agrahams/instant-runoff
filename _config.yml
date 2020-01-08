@@ -1,4 +1,4 @@
 theme: jekyll-theme-slate
 
-title: Adam Graham-Squire's Voting Programs
-description: This is a website for sharing the code for Adam Graham-Squire's voting programs, including programs searching for Monotonicity, Condorcet, IAS/PI, and No-show anomalies.
+title: Voting Programs
+description: This is a website for sharing the code for my voting programs, including programs searching for Monotonicity, Condorcet, IAS/PI, and No-show anomalies.
